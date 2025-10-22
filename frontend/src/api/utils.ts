@@ -1,0 +1,13 @@
+export const handleResponse = async (response: Response) => {
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return response.json();
+};
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "http://localhost:4000";
+
+export const fetchFromApi = async (endpoint: string) => {
+  const response = await fetch(`${API_HOST}/api/${endpoint}`);
+  return handleResponse(response);
+};
