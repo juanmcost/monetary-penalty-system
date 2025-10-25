@@ -5,9 +5,12 @@ export const handleResponse = async (response: Response) => {
   return response.json();
 };
 
-const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "http://localhost:4000";
+export const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "http://localhost:4000";
 
-export const fetchFromApi = async (endpoint: string) => {
-  const response = await fetch(`${API_HOST}/api/${endpoint}`);
+export const fetchFromApi = async (endpoint: string, method: string = 'GET') => {
+  const response = await fetch(`${API_HOST}/${endpoint}`, {
+    method,
+    credentials: 'include'
+  });
   return handleResponse(response);
 };

@@ -1,11 +1,29 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { prisma } from '../config/prisma.js';
+import pkg from 'express-openid-connect';
+const { requiresAuth } = pkg;
 
 const router = Router();
 
-router.get('/', async (_req: Request, res: Response) => {
-  const objectives = await prisma.objective.findMany({ include: { user: true } });
-  res.json(objectives);
+router.get('/', requiresAuth(), async (req: Request, res: Response, next: NextFunction) => {
+  /* req.oidc.user; */
+  try {
+    
+    const userId = req.oidc.user?.sid; // Extract userId from the authenticated user
+  
+    if (!userId) {
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+    const objectives = await prisma.objective.findMany({
+      where: { id: userId },
+      include: { user: true },
+    });
+  
+    return res.json(objectives);
+  }
+  catch (err) {
+    next(err);
+  }
 });
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {

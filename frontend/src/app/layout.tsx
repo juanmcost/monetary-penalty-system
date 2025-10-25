@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import ReactQueryProvider from './components/react-query-provider';
+import Navbar from './components/navbar';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
           <header className="bg-blue-500 text-white p-4 shadow-md">
             <h1 className="text-2xl font-bold">Monetary Penalty System</h1>
           </header>
+          <Navbar />
           <main className="container mx-auto p-4">{children}</main>
           <footer className="bg-gray-800 text-white p-4 mt-8 text-center">
             <p>&copy; 2025 Monetary Penalty System. All rights reserved.</p>
