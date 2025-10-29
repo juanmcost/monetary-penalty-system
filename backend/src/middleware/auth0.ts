@@ -58,13 +58,13 @@ const config: ConfigParams = {
         });
       }
 
-      // Asocia el usuario de la base de datos a la sesión
+      // Attach the database user to the session
       session.user = dbUser;
 
       return session;
     } catch (error) {
-      console.error('Error en afterCallback:', error);
-      throw new Error('Error al procesar el callback de autenticación.');
+      console.error('Error in afterCallback:', error);
+      throw new Error('Error processing authentication callback.');
     }
   },
 };
