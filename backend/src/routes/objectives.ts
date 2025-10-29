@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/', requiresAuth(), async (req: Request, res: Response, next: NextFunction) => {
   /* req.oidc.user; */
-  try {
+  /* try {
     
     const userId = req.oidc.user?.sid; // Extract userId from the authenticated user
   
@@ -23,7 +23,8 @@ router.get('/', requiresAuth(), async (req: Request, res: Response, next: NextFu
   }
   catch (err) {
     next(err);
-  }
+  } */
+  res.status(204).send();
 });
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
