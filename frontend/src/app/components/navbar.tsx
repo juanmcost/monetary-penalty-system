@@ -28,8 +28,13 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
                         </Link>
                     </li>
                     <li>
-                        <a href={`${API_HOST}/login-redirect`} className="text-sm hover:text-blue-600">
+                        <a href={`${API_HOST}/login`} className="text-sm hover:text-blue-600">
                             Login
+                        </a>
+                    </li>
+                    <li>
+                        <a href={`${API_HOST}/logout`} className="text-sm hover:text-blue-600">
+                            Logout
                         </a>
                     </li>
                 </ul>

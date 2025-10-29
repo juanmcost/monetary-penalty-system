@@ -8,13 +8,17 @@ datasource db {
 }
 
 model User {
-  id         Int         @id @default(autoincrement())
-  name       String
-  email      String      @unique
-  password   String
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  objectives Objective[]
+  id            String   @id @unique
+  email         String   @unique
+  given_name    String?
+  family_name   String?
+  nickname      String?
+  picture       String?
+  updated_at    DateTime?
+  email_verified Boolean?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  objectives    Objective[]
 }
 
 model Objective {
@@ -25,7 +29,7 @@ model Objective {
   amount      Decimal   @db.Decimal(10,2)
   fulfilled   Boolean   @default(false)
   user        User      @relation(fields: [userId], references: [id])
-  userId      Int
+  userId      String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
