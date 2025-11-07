@@ -18,7 +18,7 @@ const config: ConfigParams = {
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',      // <--- must be false in dev (localhost)
-      sameSite: 'Lax',
+      sameSite: 'None',
     },
   },
   getLoginState: (req, options) => ({
