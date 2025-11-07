@@ -13,15 +13,17 @@ const config: ConfigParams = {
   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
   routes: {
     postLogoutRedirect: process.env.FRONTEND_URL,
-    login: '/auth0-login',
   },
   session: {
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',      // <--- must be false in dev (localhost)
-      sameSite: 'Lax',    // <--- better for local redirects
+      sameSite: 'Lax',
     },
   },
+  getLoginState: (req, options) => ({
+    returnTo: process.env.FRONTEND_URL,
+  }),
   afterCallback: async (req, res, session, decodedState) => {
     try {
       
