@@ -14,16 +14,6 @@ const config: ConfigParams = {
   routes: {
     postLogoutRedirect: process.env.FRONTEND_URL,
   },
-  session: {
-    cookie: {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',      // <--- must be false in dev (localhost)
-      sameSite: 'None',
-    },
-  },
-  getLoginState: (req, options) => ({
-    returnTo: process.env.FRONTEND_URL,
-  }),
   afterCallback: async (req, res, session, decodedState) => {
     try {
       
